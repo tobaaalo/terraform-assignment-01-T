@@ -1,5 +1,4 @@
 # Defining Key Name for connection
 variable "keyname" {
-  default     = "terraform-project" 
-  description = "test.pem"
+  default     = "replace with your keypair name" 
 }
