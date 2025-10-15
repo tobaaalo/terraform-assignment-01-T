@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {      
         stage ("terraform init") {
             steps {
@@ -11,8 +10,14 @@ pipeline {
         stage ("terraform Action") {
             steps {
                 echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
-           }
+                script {
+                    if (action == "plan") {
+                        sh ('terraform plan') 
+                    } else {
+                        sh ('terraform ${action} --auto-approve') 
+                    }
+                }
+            }
         }
     }
 }
